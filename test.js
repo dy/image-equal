@@ -29,9 +29,9 @@ t('pixels / url' , t => {
 		x[3] = 1
 		return eq('./x.png', x)
 	}, t.fail)
-	.catch(({count, data}) => {
-		t.equal(count, 1)
-		t.ok(data.length)
+	.catch((err) => {
+		t.equal(err.count, 1)
+		t.ok(err.data.length)
 	})
 	.then(t.end)
 })
