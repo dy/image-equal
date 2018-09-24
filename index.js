@@ -15,6 +15,8 @@ if (isDoc) {
   ctx = document.createElement('canvas').getContext('2d')
 }
 
+var cache = {}
+
 function imgEqual(a, b, o) {
   if (!a || !b) throw Error('Bad arguments')
 
@@ -59,6 +61,11 @@ function loadPixels(src) {
   return new Promise(function (ok, nok) {
     // bad arg
     if (!src) return nok('Bad argument ' + src)
+
+    // fetch cached
+    if (cache[src]) {
+      return ok(cache[src])
+    }
 
     // obj.canvas
     if (src.canvas) {
@@ -130,6 +137,10 @@ function loadPixels(src) {
       else {
         px.data.width = px.shape[0]
         px.data.height = px.shape[1]
+
+        // cache result
+        cache[src] = px.data
+
         ok(px.data)
       }
     })
