@@ -7,7 +7,7 @@ Test if two images are equal. Useful for organising baseline tests for visual we
 [![npm install image-equal](https://nodei.co/npm/image-equal.png?mini=true)](https://npmjs.org/package/image-equal/)
 
 ```js
-let imageEqual = require('@dy/image-equal')
+let imageEqual = require('image-equal')
 let t = require('tape')
 let show = require('console-image')
 
