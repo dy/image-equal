@@ -1,0 +1,42 @@
+{
+  "name": "image-equal",
+  "version": "1.0.0",
+  "description": "Test if two images are equal",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dy/image-equal.git"
+  },
+  "keywords": [
+    "image",
+    "image-equal",
+    "pixelmatch",
+    "get-pixels",
+    "compare-pixels",
+    "assert",
+    "assert-image",
+    "gl-vis",
+    "canvas",
+    "console-image"
+  ],
+  "author": "dy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dy/image-equal/issues"
+  },
+  "homepage": "https://github.com/dy/image-equal#readme",
+  "devDependencies": {
+    "canvas-prebuilt": "^2.0.0-alpha.14",
+    "console-image": "0.0.0",
+    "tape": "^4.9.1"
+  },
+  "dependencies": {
+    "get-pixels": "^3.3.2",
+    "pick-by-alias": "^1.2.0",
+    "pixelmatch": "^4.0.2",
+    "flip-pixels": "^1.0.0"
+  }
+}
