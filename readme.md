@@ -26,7 +26,7 @@ t('image test', async t => {
 
 Takes two image-like arguments and returns a promise that resolves with true when both images are loaded and equal or with false when not equal.
 
-`imageA`, `imageB` can be any image-like arguments (see [pxls](https://ghub.io/pxls)):
+`imageA`, `imageB` can be any image-like arguments:
 
 * Array, TypedArray
 * Image, ImageData, ImageBitmat
@@ -50,7 +50,8 @@ Takes two image-like arguments and returns a promise that resolves with true whe
 
 ## See also
 
-* [_pixelmatch_](https://ghub.io/pixelmatch) — sync image data comparing tool.
+* [pixelmatch](https://ghub.io/pixelmatch) — sync image data comparing tool.
+* [image-pixels](https://ghub.io/image-pixels) — load pixel data from any source.
 
 ## Credits
 

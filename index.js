@@ -1,7 +1,7 @@
 'use strict'
 
 // compare two images: canvas, url, image data or array
-var getPixels = require('pxls')
+var getPixels = require('image-pixels')
 var pxmatch = require('pixelmatch')
 var pick = require('pick-by-alias')
 var isObj = require('is-plain-obj')
