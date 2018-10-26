@@ -20,7 +20,10 @@
     "assert-image",
     "gl-vis",
     "canvas",
-    "console-image"
+    "console-image",
+    "same-image",
+    "pxls",
+    "pixels"
   ],
   "author": "dy",
   "license": "MIT",
@@ -34,9 +37,9 @@
     "tape": "^4.9.1"
   },
   "dependencies": {
-    "get-pixels": "^3.3.2",
+    "is-plain-obj": "^1.1.0",
     "pick-by-alias": "^1.2.0",
     "pixelmatch": "^4.0.2",
-    "flip-pixels": "^1.0.0"
+    "pxls": "^1.0.2"
   }
 }

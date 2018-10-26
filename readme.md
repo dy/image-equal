@@ -7,25 +7,28 @@ Test if two images are equal. Useful for organising baseline tests for visual we
 [![npm install image-equal](https://nodei.co/npm/image-equal.png?mini=true)](https://npmjs.org/package/image-equal/)
 
 ```js
-let imageEqual = require('image-equal')
+let equal = require('image-equal')
 let t = require('tape')
 let show = require('console-image')
 
-t('image test', t => {
-	imageEqual('./A.png', canvasA).catch(t.fail)
-	imageEqual('./B.png', canvasB).catch({count, data, canvas} => show(canvas))
-	imageEqual('./C.png', canvasC, {threshold: 1}).then(t.end, t.fail)
+t('image test', async t => {
+	t.ok(await equal('./A.png', canvasA))
+	t.ok(await equal('./C.png', canvasC, {threshold: 1}))
+
+	// draw to canvas in case of error
+	await equal('./B.png', canvasB, document.body.appendChild(document.createElement('canvas')))
+
+	t.end()
 })
 ```
 
-## imageEqual(imageA, imageB, options?).then(pass, fail)
+## await imageEqual(imageA, imageB, diff|canvas?, options?)
 
-Takes two image-like arguments and returns a promise that resolves when both images are loaded and equal.
+Takes two image-like arguments and returns a promise that resolves with true when both images are loaded and equal or with false when not equal.
 
-`imageA`, `imageB` can be any image-like argument:
+`imageA`, `imageB` can be any image-like arguments (see [pxls](https://ghub.io/pxls)):
 
 * Array
-* Array of Arrays
 * ImageData
 * TypedArray
 * ndarray
@@ -42,9 +45,17 @@ Takes two image-like arguments and returns a promise that resolves when both ima
 * Buffer
 * ...
 
-`options` can define [_pixelmatch_](https://ghub.io/pixelmatch) options: `{ antialias: true, threshold: 0..1 }`.
+`options` can provide
 
-`fail` gets `{count, data, canvas}` object, where `count` is number of different pixels, `data` is Uint8Array and `canvas` is canvas with diff data in it (browser only).
+* `antialias` − ignore antialias, by default true
+* `threshold` − sensitivity to px difference, 0 - max, 1 - not sensitive.
+* `clip` − a sub-area to compare.
+
+`diff`, if provided, obtains pixel data with difference, as well as `diff.count` property with number of different pixels. Alternatively, a `canvas` can be provided to display the difference.
+
+## See also
+
+* [_pixelmatch_](https://ghub.io/pixelmatch) — sync image data comparing tool.
 
 ## Credits
 

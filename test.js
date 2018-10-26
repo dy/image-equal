@@ -10,32 +10,61 @@ let t = require('tape')
 // c2d.fillRect(0,1,1,1)
 
 
-t('bad urls throw error', t => {
+t('bad urls throw error', async t => {
 	t.plan(1)
 
-	eq('./1.png', './2.png')
-	.catch(t.ok)
-	.then(t.end)
+	try {
+		await eq('./1.png', './2.png')
+	} catch (e) {
+		t.ok(e)
+	}
+
+	t.end()
 })
 
-t('pixels / url' , t => {
+t('pixels / url' , async t => {
+	t.plan(3)
+	let x = [0,0,0,0, 0,0,0,255, 0,0,0,255, 0,0,0,0]
+
+	t.ok(await eq('./x.png', {data: x, width: 2, height: 2}))
+
+	t.ok(await eq('./x.png', {data: x, width: 2, height: 2}))
+
+	x[3] = 255
+
+	t.notOk(await eq('./x.png', {data: x, width: 2, height: 2}))
+
+	t.end()
+})
+
+t('clip', async t => {
+	t.plan(2)
+	let x = [0,0,0,0, 0,0,0,255, 0,0,0,255, 0,0,0,0]
+	x[3] = 255
+	x.width = 2
+	x.height = 2
+
+	t.notOk(await eq('./x.png', x, {clip: [0,0,2,1]}))
+	t.ok(await eq('./x.png', x, {clip: [0,1,2,1]}))
+
+	t.end()
+})
+
+t('export diff', async t => {
 	t.plan(2)
 
-	let x = [0,0,0,0, 0,0,0,1, 0,0,0,1, 0,0,0,0]
+	let x = [0,0,0,0, 0,0,0,255, 0,0,0,255, 0,0,0,0]
+	x[3] = 255
 
-	eq('./x.png', x)
-	.then(() => eq('./x.png', x), t.fail)
-	.then(() => {
-		x[3] = 1
-		return eq('./x.png', x)
-	}, t.fail)
-	.catch((err) => {
-		t.equal(err.count, 1)
-		t.ok(err.data.length)
-	})
-	.then(t.end)
-})
+	var diff = {}
+	await eq('./x.png', {data: x, width: 2, height: 2}, diff)
 
-t('options', t => {
+	t.equal(diff.count, 1)
+
+	diff = []
+	await eq('./x.png', {data: x, width: 2, height: 2}, diff)
+
+	t.equal(diff.length, 16)
+
 	t.end()
 })
