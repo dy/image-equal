@@ -16,40 +16,35 @@ t('image test', async t => {
 	t.ok(await equal('./C.png', canvasC, {threshold: 1}))
 
 	// draw to canvas in case of error
-	await equal('./B.png', canvasB, document.body.appendChild(document.createElement('canvas')))
+	await equal('./B.png', canvasB, show(document.createElement('canvas')))
 
 	t.end()
 })
 ```
 
-## await imageEqual(imageA, imageB, diff|canvas?, options?)
+### `await imageEqual(imageA, imageB, diff|canvas?, options?)`
 
 Takes two image-like arguments and returns a promise that resolves with true when both images are loaded and equal or with false when not equal.
 
 `imageA`, `imageB` can be any image-like arguments (see [pxls](https://ghub.io/pxls)):
 
-* Array
-* ImageData
-* TypedArray
+* Array, TypedArray
+* Image, ImageData, ImageBitmat
 * ndarray
-* Canvas
-* Context2D
-* WebGLContext
-* Image
-* base64 string
+* Canvas, Context2D, WebGLContext
 * dataURL string
-* URL
-* File
-* Blob
-* ArrayBuffer
+* URL, path
+* File, Blob
+* ArrayBuffer, Buffer
 * Buffer
 * ...
 
-`options` can provide
+`options` can provide:
 
-* `antialias` − ignore antialias, by default true
+* `antialias` − include antialias, by default `false`.
 * `threshold` − sensitivity to px difference, 0 - max, 1 - not sensitive.
 * `clip` − a sub-area to compare.
+* `cache` − cache image data for the URLs, by default `true`.
 
 `diff`, if provided, obtains pixel data with difference, as well as `diff.count` property with number of different pixels. Alternatively, a `canvas` can be provided to display the difference.
 
