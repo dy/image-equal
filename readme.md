@@ -22,11 +22,13 @@ t('image test', async t => {
 })
 ```
 
-### `await imageEqual(imageA, imageB, diff|canvas?, options?)`
+### `await imageEqual(imageA, imageB, diffOutput?, options?)`
 
 Takes two image-like arguments and returns a promise that resolves with true when both images are loaded and equal or with false when not equal.
 
-`imageA`, `imageB` can be any image-like arguments:
+#### `imageA`, `imageB`
+
+Can be any image-like arguments:
 
 * Array, TypedArray
 * Image, ImageData, ImageBitmat
@@ -39,14 +41,23 @@ Takes two image-like arguments and returns a promise that resolves with true whe
 * Buffer
 * ...
 
-`options` can provide:
+#### `options`
+
+Can provide:
 
 * `antialias` − include antialias, by default `false`.
 * `threshold` − sensitivity to px difference, 0 - max, 1 - not sensitive.
 * `clip` − a sub-area to compare.
 * `cache` − cache image data for the URLs, by default `true`.
 
-`diff`, if provided, obtains pixel data with difference, as well as `diff.count` property with number of different pixels. Alternatively, a `canvas` can be provided to display the difference.
+#### `diffOutput`
+
+Can be:
+
+* an object, obtaining `data` and `count` properties with different pixels.
+* an array, obtaining diff pixel data and `count` property with number of different pixels.
+* a `canvas` which will obtain diff image data.
+* a string with filename to save the difference output.
 
 ## See also
 

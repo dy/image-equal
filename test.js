@@ -51,7 +51,7 @@ t('clip', async t => {
 })
 
 t('export diff', async t => {
-	t.plan(2)
+	t.plan(3)
 
 	let x = [0,0,0,0, 0,0,0,255, 0,0,0,255, 0,0,0,0]
 	x[3] = 255
@@ -60,6 +60,7 @@ t('export diff', async t => {
 	await eq('./x.png', {data: x, width: 2, height: 2}, diff)
 
 	t.equal(diff.count, 1)
+	t.equal(diff.data.length, 16)
 
 	diff = []
 	await eq('./x.png', {data: x, width: 2, height: 2}, diff)

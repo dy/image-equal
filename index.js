@@ -56,6 +56,9 @@ function imgEqual(a, b, dst, o) {
             dst[i] = diff[i]
           }
         }
+        else {
+          dst.data = diff
+        }
       }
 
       return false
