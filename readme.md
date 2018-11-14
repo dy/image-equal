@@ -31,7 +31,7 @@ Takes two images and returns `true` if they're similar and `false` otherwise, op
 Shoud be actual image data container, usually loaded with [`image-pixels`](https://ghub.io/image-pixels), one of:
 
 * _Canvas_, _Context2D_, _WebGLContext_
-* _ImageData_ or _ Object_ `{data, width, height}`
+* _ImageData_ or _Object_ `{data, width, height}`
 * DataURL or Base64 string
 * _File_, _Blob_
 * _Image_, _Video_ elements with loaded data
