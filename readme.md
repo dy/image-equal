@@ -35,9 +35,9 @@ Shoud be actual image data container, one of:
 
 * _Canvas_, _Context2D_, _WebGLContext_
 * _ImageData_ or _Object_ `{data: Uint8Array, width, height}`
-* DataURL or Base64 string
+* DataURL or base64 string
 * _Image_, _Video_, _ImageBitmap_ with resolved data
-* _Array_, _Array_ of _Arrays_, _UintArray_s, _FloatArray_s with raw pixels
+* _Array_, _Array_ of _Arrays_, _Uint8Array_, _FloatArray_ with raw pixels
 * _ArrayBuffer_, _Buffer_
 * _Ndarray_
 
