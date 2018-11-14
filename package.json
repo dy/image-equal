@@ -13,17 +13,16 @@
   "keywords": [
     "image",
     "image-equal",
+    "pixels",
     "pixelmatch",
     "get-pixels",
     "compare-pixels",
     "assert",
     "assert-image",
     "gl-vis",
-    "canvas",
     "console-image",
     "same-image",
-    "pxls",
-    "pixels"
+    "tests"
   ],
   "author": "dy",
   "license": "MIT",
@@ -32,13 +31,18 @@
   },
   "homepage": "https://github.com/dy/image-equal#readme",
   "devDependencies": {
-    "console-image": "0.0.0",
+    "del": "^3.0.0",
+    "image-pixels": "^2.2.0",
     "tape": "^4.9.1"
   },
   "dependencies": {
-    "image-pixels": "^1.0.2",
+    "clip-pixels": "^1.0.1",
+    "image-output": "^2.2.1",
+    "is-browser": "^2.1.0",
     "is-plain-obj": "^1.1.0",
-    "pick-by-alias": "^1.2.0",
-    "pixelmatch": "^4.0.2"
+    "object-assign": "^4.1.1",
+    "parse-rect": "^1.2.0",
+    "pixelmatch": "^4.0.2",
+    "pxls": "^2.2.0"
   }
 }

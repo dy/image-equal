@@ -1,68 +1,81 @@
 # image-equal [![unstable](https://img.shields.io/badge/stability-unstable-green.svg)](http://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/dy/image-equal.svg)](https://travis-ci.org/dy/image-equal)
 
-Test if two images are equal. Useful for organising baseline tests for visual webgl/canvas2d components.
+Test if two images are equal. Useful for organising baseline tests for visual components.
 
 ## Usage
 
 [![npm install image-equal](https://nodei.co/npm/image-equal.png?mini=true)](https://npmjs.org/package/image-equal/)
 
 ```js
-let equal = require('image-equal')
 let t = require('tape')
-let show = require('console-image')
+let equal = require('image-equal')
+let pixels = require('image-pixels')
 
 t('image test', async t => {
-	t.ok(await equal('./A.png', canvasA))
-	t.ok(await equal('./C.png', canvasC, {threshold: 1}))
+	t.ok(equal(await pixels('./a.png'), canvasA))
+	t.ok(equal(await pixels('./b.png'), canvasB, {threshold: .2}))
 
-	// draw to canvas in case of error
-	await equal('./B.png', canvasB, show(document.createElement('canvas')))
+	// display diff to console in case of mismatch
+	t.ok(equal(await pixels('./c.png'), canvasC, true))
 
 	t.end()
 })
 ```
 
-### `await imageEqual(imageA, imageB, diffOutput?, options?)`
+### `equal(imageA, imageB, diff?, threshold|options?)`
 
-Takes two image-like arguments and returns a promise that resolves with true when both images are loaded and equal or with false when not equal.
+Takes two images and returns `true` if they're similar and `false` otherwise, optionally sending diff stats to `diff` output. `options` can adjust comparison logic.
 
 #### `imageA`, `imageB`
 
-Can be any image-like arguments:
+Shoud be actual image data container, usually loaded with [`image-pixels`](https://ghub.io/image-pixels), one of:
 
-* Array, TypedArray
-* Image, ImageData, ImageBitmat
+* _Canvas_, _Context2D_, _WebGLContext_
+* _ImageData_ or _ Object_ `{data, width, height}`
+* DataURL or Base64 string
+* _File_, _Blob_
+* _Image_, _Video_ elements with loaded data
+* _Array_, _Array_ of _Arrays_, _UintArray_s, _FloatArray_s with raw pixels
+* _ArrayBuffer_, _Buffer_
 * ndarray
-* Canvas, Context2D, WebGLContext
-* dataURL string
-* URL, path
-* File, Blob
-* ArrayBuffer, Buffer
-* Buffer
-* ...
+
+To use eventual image data, like URL, path, _ImageBitmap_, _Promise_, incomplete _Image_/_Video_, _Stream_, _Blob_ and alike, use [image-pixels](https://ghub.io/image-pixels):
+
+```js
+const equal = require('image-equal')
+const load = require('image-pixels')
+equal(...(await load.all('./a.png', './b.png')),
+```
+
+#### `diff`
+
+Can be one of:
+
+Type | Meaning
+---|---
+`Bool` | Show diff data to console, by default `false`.
+`console` | Send data to console, same as `true`.
+`Canvas2D`, `Context2D` | Put diff pixels to a canvas.
+`String` | Write diff data to a file or filepath. In browser downloads a file with difference.
+`ImageData` | Write diff data to _ImageData_ object.
+`Array`, `TypedArray` | Write diff pixels data to target array.
+`Stream` | Same data to stream, same as `console` in case of `process.stdout`.
+`function` | Call function with diff data object.
+`Object` | Obtains diff data properties: `data` pixels array, `count` - number of different pixels, `ids` - different pixel ids, `amount` - amount of difference, `0..1`.
 
 #### `options`
 
-Can provide:
-
-* `antialias` − include antialias, by default `false`.
-* `threshold` − sensitivity to px difference, 0 - max, 1 - not sensitive.
-* `clip` − a sub-area to compare.
-* `cache` − cache image data for the URLs, by default `true`.
-
-#### `diffOutput`
-
-Can be:
-
-* an object, obtaining `data` and `count` properties with different pixels.
-* an array, obtaining diff pixel data and `count` property with number of different pixels.
-* a `canvas` which will obtain diff image data.
-* a string with filename to save the difference output.
+Property | Meaning
+---|---
+`antialias` | Include antialias, by default `false`.
+`threshold` | Sensitivity to px difference, 0 - intolerant, 1 - not sensitive.
+`clip` | A sub-area to compare, rectangle `[left, top, width, height]`.
 
 ## See also
 
-* [pixelmatch](https://ghub.io/pixelmatch) — sync image data comparing tool.
-* [image-pixels](https://ghub.io/image-pixels) — load pixel data from any source.
+* [image-pixels](https://ghub.io/image-pixels) — load or save pixel data from any source.
+* [image-output](https://ghub.io/image-output) — output pixels data into any destination.
+* [pixelmatch](https://ghub.io/pixelmatch) − fuzzy image comparison tool.
 
 ## Credits
 
