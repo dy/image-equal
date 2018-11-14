@@ -54,14 +54,14 @@ Can be one of:
 Type | Meaning
 ---|---
 `Bool` | Show diff data to console, by default `false`.
-`console` | Send data to console, same as `true`.
+`console` | Send diff data to console, same as `true`.
 `Canvas2D`, `Context2D` | Put diff pixels to a canvas.
-`String` | Write diff data to a file or filepath. In browser downloads a file with difference.
+filename `String` | Write diff data to a file or filepath. In browser downloads the file.
 `ImageData` | Write diff data to _ImageData_ object.
 `Array`, `TypedArray` | Write diff pixels data to target array.
-`Stream` | Same data to stream, same as `console` in case of `process.stdout`.
+`Stream` | Send data to stream, same as `console` in case of `process.stdout`.
 `function` | Call function with diff data object.
-`Object` | Obtains diff data properties: `data` pixels array, `count` - number of different pixels, `ids` - different pixel ids, `amount` - amount of difference, `0..1`.
+`Object` | Put data properties on object: `data`, `count`, `ids`, `amount` from `0..1` range.
 
 #### `options`
 
