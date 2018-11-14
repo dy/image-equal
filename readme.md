@@ -62,8 +62,8 @@ filename `String` | Write diff data to a file or filepath. In browser downloads 
 `ImageData` | Write diff data to _ImageData_ object.
 `Array`, `TypedArray` | Write diff pixels data to target array.
 `Stream` | Send data to stream, eg. `process.stdout` (acts the same as `console`).
-`function` | Call function with diff data object.
-`Object` | Put data properties on object: `data`, `count`, `ids`, `amount` from `0..1` range.
+`Function` | Call function with diff data object.
+`Object` | Put diff stats into object: `diff.data` for diff pixels, `diff.count` for number of diff pixels, `diff.ids` for diff pixel ids and `diff.amount` for amount of difference between images, `0..1`.
 
 #### `options`
 
