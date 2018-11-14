@@ -31,23 +31,22 @@ Takes two images and returns `true` if they're similar and `false` otherwise, op
 
 #### `imageA`, `imageB`
 
-Shoud be actual image data container, usually loaded with [`image-pixels`](https://ghub.io/image-pixels), one of:
+Shoud be actual image data container, one of:
 
 * _Canvas_, _Context2D_, _WebGLContext_
-* _ImageData_ or _Object_ `{data, width, height}`
+* _ImageData_ or _Object_ `{data: Uint8Array, width, height}`
 * DataURL or Base64 string
 * _Image_, _Video_, _ImageBitmap_ with resolved data
-* _Context2D_, _WebGLContext_, _Canvas_
 * _Array_, _Array_ of _Arrays_, _UintArray_s, _FloatArray_s with raw pixels
 * _ArrayBuffer_, _Buffer_
 * _Ndarray_
 
-To use eventual image data, like URL, path, _ImageBitmap_, _Promise_, incomplete _Image_/_Video_, _Stream_, _Blob_ and alike, use [image-pixels](https://ghub.io/image-pixels):
+To use async image source, like URL, path, _ImageBitmap_, _Promise_, incomplete _Image_/_Video_, _Stream_, _Blob_ and alike, use [image-pixels](https://ghub.io/image-pixels):
 
 ```js
 const equal = require('image-equal')
 const load = require('image-pixels')
-equal(...(await load.all('./a.png', './b.png')),
+equal(await load('./a.png'), await load('./b.png')),
 ```
 
 #### `diff`
