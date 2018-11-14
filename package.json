@@ -1,7 +1,7 @@
 {
   "name": "image-equal",
   "version": "4.0.0",
-  "description": "Test if two images are equal",
+  "description": "Test if two images are equal, optionally show image difference",
   "main": "index.js",
   "scripts": {
     "test": "node test"
