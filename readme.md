@@ -61,7 +61,7 @@ Type | Meaning
 filename `String` | Write diff data to a file or filepath. In browser downloads the file.
 `ImageData` | Write diff data to _ImageData_ object.
 `Array`, `TypedArray` | Write diff pixels data to target array.
-`Stream` | Send data to stream, same as `console` in case of `process.stdout`.
+`Stream` | Send data to stream, eg. `process.stdout` (acts the same as `console`).
 `function` | Call function with diff data object.
 `Object` | Put data properties on object: `data`, `count`, `ids`, `amount` from `0..1` range.
 
