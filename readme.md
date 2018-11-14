@@ -18,7 +18,7 @@ t('image test', async t => {
 	// display diff to console in case of mismatch
 	t.ok(equal(await pixels('./c.png'), canvasC, true))
 
-	// just compare two pixel arrays
+	// compare two pixel arrays
 	t.ok(equal([0,0,0,255,255,255,255,255], [0,0,0,255,255,255,255,255]))
 
 	t.end()
