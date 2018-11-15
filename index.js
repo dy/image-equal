@@ -41,8 +41,8 @@ function equal(a, b, dst, o) {
   if (!o.height) o.height = a.shape ? a.shape[1] : a.height
   if (!o.height) o.height = b.shape ? b.shape[1] : b.height
 
-  var pixelsA = getPixels(a)
-  var pixelsB = getPixels(b)
+  var pixelsA = pxls(a)
+  var pixelsB = pxls(b)
 
   if (!o.width) o.width = pixelsA.length >> 2
   if (!o.height) o.height = (pixelsA.length >> 2) / o.width
@@ -116,24 +116,4 @@ function equal(a, b, dst, o) {
   }
 
   return true
-}
-
-
-var context
-function getPixels (data, o) {
-  // sync browser data containers
-  if (isBrowser) {
-    if (data.tagName || global.ImageBitmap && data instanceof ImageBitmap) {
-      if (!context) context = document.createElement('canvas').getContext('2d')
-
-      context.canvas.width = data.width || o.width
-      context.canvas.height = data.height || o.width
-
-      context.drawImage(data, 0, 0)
-
-      data = context.getImageData(0, 0, context.canvas.width, context.canvas.height)
-    }
-  }
-
-  return pxls(data)
 }
