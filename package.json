@@ -47,6 +47,6 @@
     "object-assign": "^4.1.1",
     "parse-rect": "^1.2.0",
     "pixelmatch": "^4.0.2",
-    "pxls": "^2.2.0"
+    "pxls": "^2.2.4"
   }
 }

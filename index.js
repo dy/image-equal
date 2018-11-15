@@ -36,10 +36,10 @@ function equal(a, b, dst, o) {
 
   // figure out width/height
   if (o.shape) o.width = o.shape[0], o.height = o.shape[1]
-  if (!o.width) o.width = a.shape ? a.shape[0] : a.width
-  if (!o.width) o.width = b.shape ? b.shape[0] : b.width
-  if (!o.height) o.height = a.shape ? a.shape[1] : a.height
-  if (!o.height) o.height = b.shape ? b.shape[1] : b.height
+  if (!o.width) o.width = a.shape ? a.shape[0] : a.width || a.drawingBufferWidth
+  if (!o.width) o.width = b.shape ? b.shape[0] : b.width || b.drawingBufferWidth
+  if (!o.height) o.height = a.shape ? a.shape[1] : a.height || a.drawingBufferHeight
+  if (!o.height) o.height = b.shape ? b.shape[1] : b.height || b.drawingBufferHeight
 
   var pixelsA = pxls(a)
   var pixelsB = pxls(b)
