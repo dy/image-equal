@@ -54,7 +54,7 @@ t('threshold', t => {
 	var data2 = data.slice()
 	data2[0] = 1
 
-	t.notOk(eq(data, data2))
+	t.notOk(eq(data, data2, 0))
 	t.ok(eq(data, data2, .01))
 	t.ok(eq(data, data2, {threshold: 0.01}))
 

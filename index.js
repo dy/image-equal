@@ -31,7 +31,7 @@ function equal(a, b, dst, o) {
     threshold: 'threshold tol tolerance tshd level'
   }, true)
 
-  if (!o.threshold) o.threshold = 0
+  if (o.threshold == null) o.threshold = 0.1
   if (o.includeAA == null) o.includeAA = false
 
   // figure out width/height

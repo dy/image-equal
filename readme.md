@@ -25,7 +25,7 @@ t('image test', async t => {
 })
 ```
 
-### `equal(imageA, imageB, diff?, threshold|options?)`
+### `equal(imageA, imageB, diff?, threshold=0.1|options?)`
 
 Takes two images and returns `true` if they're similar and `false` otherwise, optionally sending diff stats to `diff` output. `options` can adjust comparison logic.
 
@@ -70,7 +70,7 @@ filename `String` | Write diff data to a file or filepath. In browser downloads 
 Property | Meaning
 ---|---
 `antialias` | Include antialias, by default `false`.
-`threshold` | Sensitivity to px difference, 0 - intolerant, 1 - not sensitive.
+`threshold` | Sensitivity to px difference, 0 - intolerant, 1 - not sensitive. By default `0.1`.
 `clip` | A sub-area to compare, rectangle `[left, top, width, height]`.
 
 ## See also
