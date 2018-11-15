@@ -105,6 +105,10 @@ function equal(a, b, dst, o) {
         if (dst.data || Array.isArray(dst) || ArrayBuffer.isView(dst) || isObj(dst)) {
           x(dst, diffStats)
         }
+        // or print to console
+        else if (dst === console) {
+          console.log('Difference:', diffStats)
+        }
       }
     }
 
