@@ -58,6 +58,7 @@ Type | Meaning
 `Bool` | Show diff data to console, by default `false`.
 `console` | Send diff data to console, same as `true`.
 `Canvas2D`, `Context2D` | Put diff pixels to a canvas.
+`document`, `Element` | Create a canvas in `document`/`element` with diff pixels.
 filename `String` | Write diff data to a file or filepath. In browser downloads the file.
 `ImageData` | Write diff data to _ImageData_ object.
 `Array`, `TypedArray` | Write diff pixels data to target array.

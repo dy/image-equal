@@ -81,7 +81,6 @@ t('readme cases', async t => {
 })
 
 
-
 t('diff to console', t => {
 	t.notOk(eq([0,0,0,255, 255,255,255,255], [0,0,0,0, 255,255,255,255], true))
 
@@ -137,6 +136,12 @@ t('diff to function', t => {
 		t.ok(eq(diff, obj))
 		t.end()
 	}))
+})
+t('diff to document, element', t => {
+	if (typeof document === 'undefined') return t.end()
+
+	t.notOk(eq([0,0,0,255, 255,255,255,255], [0,0,0,0, 255,255,255,255], document))
+	t.notOk(eq([0,0,0,255, 255,255,255,255], [0,0,0,0, 255,255,255,255], document.body))
 })
 
 t('clip', async t => {
