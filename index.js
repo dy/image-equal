@@ -20,7 +20,12 @@ function equal(a, b, dst, o) {
 
   if (!o) {
     // if only options passed
-    if (isObj(dst) || typeof dst === 'number' || Array.isArray(dst)) o = dst
+    if (isObj(dst) || typeof dst === 'number' || Array.isArray(dst)) {
+      o = dst
+
+      // avoid exposing on number
+      if (typeof dst === 'number') dst = null
+    }
   }
 
   if (typeof o === 'number') o = {threshold: o}
@@ -43,7 +48,6 @@ function equal(a, b, dst, o) {
 
   var pixelsA = pxls(a)
   var pixelsB = pxls(b)
-
   if (!o.width) o.width = pixelsA.length >> 2
   if (!o.height) o.height = (pixelsA.length >> 2) / o.width
 

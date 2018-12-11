@@ -154,3 +154,15 @@ t('clip', async t => {
 
 	t.end()
 })
+
+t('when pxls returns 0-length uint8array', async t => {
+	t.end()
+})
+
+t('dst is number, failing test', async t => {
+	t.notOk(eq([0,0,0,1,1,1,1,1], [0,1,0,1,1,1,1,1], 0))
+	t.ok(eq([0,0,0,1,1,1,1,1], [0,1,0,1,1,1,1,1], .8))
+
+	t.end()
+})
+
