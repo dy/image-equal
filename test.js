@@ -156,6 +156,12 @@ t('clip', async t => {
 })
 
 t('when pxls returns 0-length uint8array', async t => {
+	t.throws(() => eq({
+		data: [],
+		width: 0,
+		height: 0
+	}, [0,1,0,1,1,1,1,1], 0))
+
 	t.end()
 })
 

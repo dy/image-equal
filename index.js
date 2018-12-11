@@ -48,6 +48,9 @@ function equal(a, b, dst, o) {
 
   var pixelsA = pxls(a)
   var pixelsB = pxls(b)
+
+  if (!pixelsA.length || !pixelsB.length) throw Error('Something went wrong: pixel data length is 0')
+
   if (!o.width) o.width = pixelsA.length >> 2
   if (!o.height) o.height = (pixelsA.length >> 2) / o.width
 
